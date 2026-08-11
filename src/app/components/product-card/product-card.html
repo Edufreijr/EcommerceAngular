@@ -1,0 +1,33 @@
+<img [src]="product().image" [alt]="product().name" />
+
+<span class="category"> {{ product().category }} </span>
+
+<h2>{{ product().name }}</h2>
+
+<p class="description">{{ product().description }}</p>
+
+<div class="price">{{ product().price | currency:'BRL':'symbol':'1.2-2' }}</div>
+
+@if (product().stock === 0) {
+
+<span class="stock unavailable"> 🔴 Sem estoque </span>
+
+} @else if (product().stock <= 5) {
+
+<span class="stock low-stock">
+  ⚠️ Estoque baixo — {{ product().stock }} {{ product().stock === 1 ? 'unidade' : 'unidades' }}
+</span>
+
+} @else {
+
+<span class="stock available"> Em estoque </span>
+
+}
+
+<div class="actions">
+  <a class="details" [routerLink]="['/produto', product().id]"> Ver detalhes </a>
+
+  <button type="button" (click)="product().stock > 0 && onAddToCart()">
+    @if (product().stock === 0) { Me avise quando chegar } @else { Adicionar ao Carrinho }
+  </button>
+</div>

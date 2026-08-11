@@ -1,0 +1,282 @@
+.payment-card {
+  width: 100%;
+  max-width: 850px;
+  margin: 40px auto;
+  background: #1b1b1b;
+  border: 1px solid #2d2d2d;
+  border-radius: 14px;
+  padding: 35px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+}
+
+.payment-header {
+  margin-bottom: 25px;
+}
+
+.payment-header h1 {
+  margin: 0 0 8px;
+  color: #ffd600;
+  font-size: 32px;
+}
+
+.payment-header p {
+  margin: 0;
+  color: #aaa;
+}
+
+.customer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  margin-bottom: 30px;
+  background: #242424;
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+.customer-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.customer-info span {
+  color: #999;
+  font-size: 13px;
+}
+
+.customer-info strong {
+  color: white;
+  font-size: 16px;
+}
+
+.edit-button {
+  border: 1px solid #ffd600;
+  background: transparent;
+  color: #ffd600;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.edit-button:hover {
+  background: #ffd600;
+  color: #111;
+}
+
+.payment-content h2 {
+  color: white;
+  font-size: 21px;
+  margin-bottom: 18px;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  background: #242424;
+  border: 1px solid #383838;
+  border-radius: 10px;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.payment-option:hover {
+  border-color: #ffd600;
+}
+
+.payment-option.selected {
+  border-color: #ffd600;
+  background: #292900;
+}
+
+.option-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #ffd600;
+  color: #111;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.option-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.option-info strong {
+  font-size: 16px;
+}
+
+.option-info span {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.radio {
+  color: #ffd600;
+  font-size: 24px;
+}
+
+.pix-info,
+.method-info {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 10px;
+  background: #242424;
+  border-left: 4px solid #ffd600;
+}
+
+.pix-info h3,
+.method-info h3 {
+  margin: 0 0 8px;
+  color: #ffd600;
+}
+
+.pix-info p,
+.method-info p {
+  margin: 0 0 12px;
+  color: #bbb;
+  line-height: 1.5;
+}
+
+.pix-info strong {
+  color: #ffd600;
+}
+
+.order-total {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #333;
+}
+
+.total-row,
+.discount-row,
+.final-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.total-row span,
+.discount-row span {
+  color: #aaa;
+}
+
+.total-row strong {
+  color: white;
+}
+
+.discount-row span,
+.discount-row strong {
+  color: #ffd600;
+}
+
+.final-row {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #333;
+}
+
+.final-row span {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.final-row strong {
+  color: #ffd600;
+  font-size: 24px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.back-button,
+.continue-button {
+  flex: 1;
+  padding: 15px;
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.back-button {
+  background: transparent;
+  color: white;
+  border: 1px solid #555;
+}
+
+.back-button:hover {
+  border-color: #aaa;
+}
+
+.continue-button {
+  background: #ffd600;
+  color: #111;
+  border: none;
+}
+
+.continue-button:hover {
+  background: #ffea63;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 650px) {
+  .payment-card {
+    margin: 20px 12px;
+    width: calc(100% - 24px);
+    padding: 22px;
+  }
+
+  .customer-info {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .edit-button {
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .final-row span {
+    font-size: 18px;
+  }
+
+  .final-row strong {
+    font-size: 21px;
+  }
+}

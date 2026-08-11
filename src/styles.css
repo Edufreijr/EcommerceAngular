@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #111111;
+
+  --primary-dark: #000000;
+
+  --secondary: #ffd400;
+
+  --secondary-dark: #e6be00;
+
+  --background: #181818;
+
+  --surface: #242424;
+
+  --surface-light: #2f2f2f;
+
+  --text: #ffffff;
+
+  --text-light: #c8c8c8;
+
+  --border: #3b3b3b;
+
+  --success: #39d353;
+
+  --danger: #ff4d4d;
+
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+
+  --radius: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+
+  background: var(--background);
+
+  color: var(--text);
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: #1b1b1b !important;
+  color: #fff !important;
+  border-radius: 16px !important;
+}
+
+button {
+  transition: 0.25s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

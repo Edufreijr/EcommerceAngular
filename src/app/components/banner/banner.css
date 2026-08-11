@@ -1,0 +1,12 @@
+.hero {
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.hero img {
+  width: 100%;
+  display: block;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}

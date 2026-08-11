@@ -1,0 +1,59 @@
+<h2>Meu Carrinho</h2>
+
+<div class="empty-cart" [hidden]="cartService.cartItems().length > 0">
+  <div class="empty-icon">🛒</div>
+
+  <h3>Seu carrinho está vazio</h3>
+
+  <p>Você ainda não adicionou nenhum produto ao carrinho.</p>
+
+  <button type="button" class="continue-button" (click)="close()">Continuar comprando</button>
+</div>
+
+<div [hidden]="cartService.cartItems().length === 0">
+  @for (item of cartService.cartItems(); track item.product.id) {
+
+  <div class="item">
+    <img [src]="item.product.image" [alt]="item.product.name" />
+
+    <div class="product-info">
+      <h3>{{ item.product.name }}</h3>
+
+      <span> {{ item.product.price | currency:'BRL' }} </span>
+
+      <div class="quantity">
+        <button type="button" (click)="decrease(item.product.id)" [disabled]="item.quantity <= 1">
+          −
+        </button>
+
+        <strong> {{ item.quantity }} </strong>
+
+        <button
+          type="button"
+          (click)="increase(item.product.id)"
+          [disabled]="item.quantity >= item.product.stock"
+        >
+          +
+        </button>
+      </div>
+
+      <small class="stock-info"> Estoque disponível: {{ item.product.stock }} </small>
+    </div>
+
+    <button type="button" class="remove" (click)="remove(item.product.id)">×</button>
+  </div>
+
+  }
+
+  <div class="total">
+    <strong> Total: </strong>
+
+    <strong> {{ cartService.cartTotal() | currency:'BRL' }} </strong>
+  </div>
+
+  <div class="buttons">
+    <button type="button" class="secondary" (click)="close()">Continuar comprando</button>
+
+    <button type="button" class="primary" (click)="finishPurchase()">Finalizar compra</button>
+  </div>
+</div>

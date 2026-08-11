@@ -1,0 +1,125 @@
+<header>
+  <div class="top-header">
+    <a class="logo" routerLink="/" aria-label="Voltar para a página inicial">
+      <span class="icon">🖥️</span>
+
+      <div>
+        <h1>EdHardwareShop</h1>
+
+        <small> Hardware & Tecnologia </small>
+      </div>
+    </a>
+
+    <div class="search-wrapper">
+      <div class="search">
+        <input
+          type="text"
+          placeholder="Pesquisar produtos..."
+          [value]="searchText"
+          (input)="onSearch($event)"
+        />
+
+        @if (searchText) {
+
+        <button
+          type="button"
+          class="clear-search"
+          (click)="clearSearch()"
+          aria-label="Limpar pesquisa"
+        >
+          ×
+        </button>
+
+        }
+
+        <button type="button" class="search-button" aria-label="Pesquisar">🔍</button>
+      </div>
+
+      @if (searchText) {
+
+      <div class="search-results">
+        @if (searchResults.length > 0) { @for (product of searchResults; track product.id) {
+
+        <button type="button" class="search-result" (click)="openProduct(product.id)">
+          <div class="result-image">
+            <img [src]="product.image" [alt]="product.name" />
+          </div>
+
+          <div class="result-info">
+            <strong> {{ product.name }} </strong>
+
+            <span> {{ product.category }} </span>
+
+            <b> {{ product.price | currency:'BRL':'symbol':'1.2-2' }} </b>
+          </div>
+        </button>
+
+        } } @else {
+
+        <div class="no-results">
+          <strong> Nenhum produto encontrado </strong>
+
+          <span> Tente outro termo de pesquisa. </span>
+        </div>
+
+        }
+      </div>
+
+      }
+    </div>
+
+    <div class="header-actions">
+      @if (!authService.isLoggedIn()) {
+
+      <button type="button" class="login-button" (click)="openLogin()">
+        👤
+
+        <span> Login </span>
+      </button>
+
+      } @if (authService.isLoggedIn()) {
+
+      <div class="user-area">
+        @if (authService.isAdmin()) {
+
+        <button type="button" class="login-button" (click)="goAdmin()">
+          🛠
+
+          <span> Admin </span>
+        </button>
+
+        } @if (authService.isClient()) {
+
+        <div class="user-name">👤 {{ authService.user()?.email }}</div>
+
+        }
+
+        <button type="button" class="logout-button" (click)="logout()">Sair</button>
+      </div>
+
+      }
+
+      <button type="button" class="cart" (click)="openCart()" aria-label="Abrir carrinho">
+        🛒
+
+        <span> {{ cartService.cartCount() }} </span>
+      </button>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#"> Hardware </a>
+
+    <a href="#"> Processadores </a>
+
+    <a href="#"> Placas de Vídeo </a>
+
+    <a href="#"> Memórias </a>
+
+    <a href="#"> SSD </a>
+
+    <a href="#"> Monitores </a>
+
+    <a href="#"> Periféricos </a>
+  </nav>
+</header>

@@ -1,0 +1,50 @@
+<div class="search-modal">
+  <div class="modal-header">
+    <div>
+      <h2>Resultados da pesquisa</h2>
+
+      <p>
+        Pesquisando por:
+        <strong> "{{ searchService.search() }}" </strong>
+      </p>
+    </div>
+
+    <button type="button" class="close-button" (click)="close()" aria-label="Fechar">×</button>
+  </div>
+
+  @if (products().length > 0) {
+
+  <div class="results-list">
+    @for (product of products(); track product.id) {
+
+    <button type="button" class="result-item" (click)="openProduct(product.id)">
+      <div class="result-image">
+        <img [src]="product.image" [alt]="product.name" />
+      </div>
+
+      <div class="result-info">
+        <h3>{{ product.name }}</h3>
+
+        <span class="category"> {{ product.category }} </span>
+
+        <strong class="price"> {{ product.price | currency:'BRL':'symbol':'1.2-2' }} </strong>
+      </div>
+
+      <span class="arrow"> → </span>
+    </button>
+
+    }
+  </div>
+
+  } @else {
+
+  <div class="no-results">
+    <div class="no-results-icon">🔍</div>
+
+    <h3>Nenhum produto encontrado</h3>
+
+    <p>Tente pesquisar por outro produto ou categoria.</p>
+  </div>
+
+  }
+</div>

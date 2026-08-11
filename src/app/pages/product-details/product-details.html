@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+@if (product(); as product) {
+
+<div class="product-page">
+  <div class="image">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
+
+  <div class="info">
+    <span class="category"> {{ product.category }} </span>
+
+    <h1>{{ product.name }}</h1>
+
+    <p class="description">{{ product.description }}</p>
+
+    <h2>{{ product.price | currency:'BRL':'symbol':'1.2-2' }}</h2>
+
+    <p class="stock">
+      Estoque disponível:
+
+      <strong> {{ product.stock }} </strong>
+    </p>
+
+    <div class="buttons">
+      <button class="buy" [disabled]="product.stock <= 0" (click)="addToCart()">
+        {{ product.stock > 0 ? 'Adicionar ao Carrinho' : 'Produto Indisponível' }}
+      </button>
+
+      <button type="button" class="back" (click)="goBack()">Voltar</button>
+    </div>
+  </div>
+</div>
+
+} @else {
+
+<div class="not-found">
+  <h2>Produto não encontrado</h2>
+
+  <p>O produto que você está procurando não existe.</p>
+
+  <button type="button" (click)="goBack()">Voltar</button>
+</div>
+
+}

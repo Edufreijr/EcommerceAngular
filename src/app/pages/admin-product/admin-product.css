@@ -1,0 +1,369 @@
+.admin-product-container {
+  min-height: 100vh;
+
+  padding: 190px 40px 50px;
+
+  background: #f5f5f5;
+}
+
+.admin-product-card {
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding: 35px;
+
+  background: white;
+
+  border-radius: 14px;
+
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* HEADER */
+
+.page-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 30px;
+
+  margin-bottom: 35px;
+}
+
+.admin-label {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  color: #777;
+
+  font-size: 0.8rem;
+
+  font-weight: bold;
+
+  letter-spacing: 1.5px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+
+  color: #111;
+
+  font-size: 2rem;
+}
+
+.page-header p {
+  margin: 0;
+
+  color: #777;
+}
+
+/* BOTÃO VOLTAR */
+
+.back-button {
+  padding: 11px 18px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #333;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.back-button:hover {
+  border-color: #ffd400;
+
+  background: #fffbea;
+}
+
+/* FORM */
+
+.product-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.form-group label {
+  color: #333;
+
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 13px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  font-size: 1rem;
+
+  font-family: inherit;
+
+  transition: 0.2s;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #ffd400;
+
+  box-shadow: 0 0 0 2px rgba(255, 212, 0, 0.2);
+}
+
+/* ÁREA DE IMAGEM */
+
+.image-drop-zone {
+  position: relative;
+
+  min-height: 250px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 25px;
+
+  box-sizing: border-box;
+
+  border: 2px dashed #d5d5d5;
+
+  border-radius: 12px;
+
+  background: #fafafa;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.image-drop-zone:hover {
+  border-color: #ffd400;
+
+  background: #fffbea;
+}
+
+.image-drop-zone input[type='file'] {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  opacity: 0;
+
+  cursor: pointer;
+}
+
+/* TEXTO QUANDO NÃO TEM IMAGEM */
+
+.upload-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  text-align: center;
+
+  pointer-events: none;
+}
+
+.upload-icon {
+  font-size: 3rem;
+
+  margin-bottom: 5px;
+}
+
+.upload-content strong {
+  color: #333;
+
+  font-size: 1.05rem;
+}
+
+.upload-content span {
+  color: #777;
+
+  font-size: 0.9rem;
+}
+
+.upload-content small {
+  color: #999;
+
+  font-size: 0.8rem;
+}
+
+/* PREVIEW DA IMAGEM */
+
+.image-preview {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 12px;
+
+  pointer-events: none;
+}
+
+.image-preview img {
+  width: 230px;
+
+  height: 180px;
+
+  object-fit: contain;
+
+  background: white;
+
+  border-radius: 10px;
+
+  border: 1px solid #ddd;
+}
+
+.image-preview span {
+  color: #777;
+
+  font-size: 0.85rem;
+
+  text-align: center;
+}
+
+/* BOTÕES */
+
+.form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 15px;
+}
+
+.cancel-button,
+.save-button {
+  padding: 13px 22px;
+
+  border-radius: 8px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.cancel-button {
+  border: 1px solid #ddd;
+
+  background: white;
+
+  color: #555;
+}
+
+.cancel-button:hover {
+  background: #f5f5f5;
+}
+
+.save-button {
+  border: none;
+
+  background: #ffd400;
+
+  color: #111;
+}
+
+.save-button:hover {
+  background: #ffea63;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
+  .admin-product-container {
+    padding: 170px 20px 40px;
+  }
+
+  .admin-product-card {
+    padding: 25px;
+  }
+
+  .page-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .back-button {
+    width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .cancel-button,
+  .save-button {
+    width: 100%;
+  }
+
+  .image-preview img {
+    width: 180px;
+
+    height: 150px;
+  }
+}

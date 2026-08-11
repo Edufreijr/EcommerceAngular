@@ -1,0 +1,145 @@
+<app-header></app-header>
+
+<div class="summary-container">
+  <div class="summary-card">
+    <div class="summary-header">
+      <h1>Resumo do Pedido</h1>
+
+      <p>Confira os dados antes de finalizar sua compra.</p>
+    </div>
+
+    <section class="customer-section">
+      <h2>Dados do cliente</h2>
+
+      <div class="customer-data">
+        <p>
+          <strong>Nome:</strong>
+          {{ customer()?.name }}
+        </p>
+
+        <p>
+          <strong>E-mail:</strong>
+          {{ customer()?.email }}
+        </p>
+
+        <p>
+          <strong>Telefone:</strong>
+          {{ customer()?.phone }}
+        </p>
+
+        <p>
+          <strong>Endereço:</strong>
+          {{ customer()?.street }}, {{ customer()?.number }} @if (customer()?.complement) { - {{
+          customer()?.complement }} }
+        </p>
+
+        <p>
+          <strong>CEP:</strong>
+          {{ customer()?.cep }}
+        </p>
+
+        <p>
+          <strong>Cidade:</strong>
+          {{ customer()?.city }} - {{ customer()?.state }}
+        </p>
+      </div>
+    </section>
+
+    <section class="payment-section">
+      <h2>Forma de pagamento</h2>
+
+      <div class="payment-data">
+        @if (paymentMethod() === 'pix') {
+
+        <strong> PIX </strong>
+
+        <span> 15% de desconto </span>
+
+        } @else if (paymentMethod() === 'card') {
+
+        <strong> Cartão </strong>
+
+        <span> Crédito ou débito </span>
+
+        } @else {
+
+        <strong> Boleto bancário </strong>
+
+        <span> Pagamento à vista </span>
+
+        }
+      </div>
+    </section>
+
+    <section class="products-section">
+      <h2>Produtos</h2>
+
+      <div class="products-list">
+        @for (item of products(); track item.product.id) {
+
+        <div class="product-item">
+          <div class="product-image">
+            <img [src]="item.product.image" [alt]="item.product.name" />
+          </div>
+
+          <div class="product-info">
+            <h3>{{ item.product.name }}</h3>
+
+            <span>
+              {{ item.quantity }}x {{ item.product.price | currency:'BRL':'symbol':'1.2-2' }}
+            </span>
+
+            <small>
+              Total do item: {{ (item.product.price * item.quantity) |
+              currency:'BRL':'symbol':'1.2-2' }}
+            </small>
+          </div>
+        </div>
+
+        } @empty {
+
+        <div class="empty-products">
+          <p>Nenhum produto no carrinho.</p>
+        </div>
+
+        }
+      </div>
+    </section>
+
+    <section class="values-section">
+      <div class="value-row">
+        <span> Subtotal </span>
+
+        <strong> {{ subtotal() | currency:'BRL':'symbol':'1.2-2' }} </strong>
+      </div>
+
+      @if (discount() > 0) {
+
+      <div class="value-row discount">
+        <span> Desconto PIX (15%) </span>
+
+        <strong> - {{ discount() | currency:'BRL':'symbol':'1.2-2' }} </strong>
+      </div>
+
+      }
+
+      <div class="value-row total">
+        <span> Total </span>
+
+        <strong> {{ total() | currency:'BRL':'symbol':'1.2-2' }} </strong>
+      </div>
+    </section>
+
+    @if (errorMessage) {
+
+    <div class="error-message">{{ errorMessage }}</div>
+
+    }
+
+    <div class="actions">
+      <button type="button" class="back-button" (click)="backToPayment()">Voltar</button>
+
+      <button type="button" class="finish-button" (click)="finishOrder()">Finalizar Pedido</button>
+    </div>
+  </div>
+</div>

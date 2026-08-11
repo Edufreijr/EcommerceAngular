@@ -1,0 +1,133 @@
+.success-container {
+  min-height: calc(100vh - 80px);
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.success-card {
+  width: 100%;
+  max-width: 600px;
+  background: #1b1b1b;
+  border: 1px solid #2d2d2d;
+  border-radius: 16px;
+  padding: 45px 35px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #ffd600;
+  color: #111;
+
+  font-size: 45px;
+  font-weight: 900;
+}
+
+.success-card h1 {
+  margin: 0 0 12px;
+
+  color: #ffd600;
+  font-size: 32px;
+}
+
+.success-message {
+  margin: 0 0 15px;
+
+  color: white;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.success-info {
+  max-width: 500px;
+  margin: 0 auto 30px;
+
+  color: #aaa;
+  line-height: 1.6;
+}
+
+.success-details {
+  display: flex;
+  gap: 15px;
+
+  margin-bottom: 30px;
+}
+
+.detail {
+  flex: 1;
+
+  padding: 18px;
+
+  background: #242424;
+  border: 1px solid #333;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.detail span {
+  color: #999;
+  font-size: 13px;
+}
+
+.detail strong {
+  color: white;
+  font-size: 14px;
+}
+
+.home-button {
+  width: 100%;
+
+  padding: 15px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #ffd600;
+  color: #111;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.home-button:hover {
+  background: #ffea63;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .success-container {
+    padding: 20px 12px;
+  }
+
+  .success-card {
+    padding: 35px 22px;
+  }
+
+  .success-details {
+    flex-direction: column;
+  }
+
+  .success-card h1 {
+    font-size: 27px;
+  }
+}

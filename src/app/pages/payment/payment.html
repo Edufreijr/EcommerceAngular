@@ -1,0 +1,134 @@
+<app-header></app-header>
+
+<div class="payment-card">
+  <div class="payment-header">
+    <h1>Pagamento</h1>
+
+    <p>Escolha a forma de pagamento para finalizar seu pedido.</p>
+  </div>
+
+  <div class="customer-info">
+    <div>
+      <span> Cliente </span>
+
+      <strong> {{ customer()?.name || 'Cliente' }} </strong>
+    </div>
+
+    <button type="button" class="edit-button" (click)="backToRegister()">Alterar dados</button>
+  </div>
+
+  <div class="payment-content">
+    <h2>Forma de pagamento</h2>
+
+    <div class="payment-options">
+      <button
+        type="button"
+        class="payment-option"
+        [class.selected]="paymentMethod() === 'pix'"
+        (click)="changePaymentMethod('pix')"
+      >
+        <div class="option-icon">PIX</div>
+
+        <div class="option-info">
+          <strong> PIX </strong>
+
+          <span> 15% de desconto </span>
+        </div>
+
+        <div class="radio">{{ paymentMethod() === 'pix' ? '●' : '○' }}</div>
+      </button>
+
+      <button
+        type="button"
+        class="payment-option"
+        [class.selected]="paymentMethod() === 'card'"
+        (click)="changePaymentMethod('card')"
+      >
+        <div class="option-icon">💳</div>
+
+        <div class="option-info">
+          <strong> Cartão </strong>
+
+          <span> Crédito ou débito </span>
+        </div>
+
+        <div class="radio">{{ paymentMethod() === 'card' ? '●' : '○' }}</div>
+      </button>
+
+      <button
+        type="button"
+        class="payment-option"
+        [class.selected]="paymentMethod() === 'boleto'"
+        (click)="changePaymentMethod('boleto')"
+      >
+        <div class="option-icon">BOL</div>
+
+        <div class="option-info">
+          <strong> Boleto </strong>
+
+          <span> Pagamento à vista </span>
+        </div>
+
+        <div class="radio">{{ paymentMethod() === 'boleto' ? '●' : '○' }}</div>
+      </button>
+    </div>
+
+    @if (paymentMethod() === 'pix') {
+
+    <div class="pix-info">
+      <h3>Pagamento via PIX</h3>
+
+      <p>Você receberá o código PIX após confirmar o pedido.</p>
+
+      <strong> Você economiza {{ discount() | currency:'BRL' }} </strong>
+    </div>
+
+    } @if (paymentMethod() === 'card') {
+
+    <div class="method-info">
+      <h3>Pagamento com cartão</h3>
+
+      <p>O pagamento com cartão será processado com segurança.</p>
+    </div>
+
+    } @if (paymentMethod() === 'boleto') {
+
+    <div class="method-info">
+      <h3>Pagamento via boleto bancário</h3>
+
+      <p>O boleto será disponibilizado após a confirmação do pedido.</p>
+    </div>
+
+    }
+  </div>
+
+  <div class="order-total">
+    <div class="total-row">
+      <span> Subtotal </span>
+
+      <strong> {{ subtotal() | currency:'BRL' }} </strong>
+    </div>
+
+    @if (paymentMethod() === 'pix') {
+
+    <div class="discount-row">
+      <span> Desconto PIX (15%) </span>
+
+      <strong> - {{ discount() | currency:'BRL' }} </strong>
+    </div>
+
+    }
+
+    <div class="final-row">
+      <span> Total </span>
+
+      <strong> {{ finalTotal() | currency:'BRL' }} </strong>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="back-button" (click)="backToRegister()">Voltar</button>
+
+    <button type="button" class="continue-button" (click)="continueToSummary()">Continuar</button>
+  </div>
+</div>

@@ -1,0 +1,209 @@
+.product-page {
+  max-width: 1400px;
+
+  margin: 20px auto;
+
+  padding: 20px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 50px;
+}
+
+.image {
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 30px;
+
+  min-height: 450px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.image img {
+  width: 100%;
+
+  max-width: 500px;
+
+  max-height: 500px;
+
+  object-fit: contain;
+}
+
+.info {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.category {
+  color: #ff6500;
+
+  font-weight: bold;
+
+  font-size: 0.95rem;
+
+  margin-bottom: 10px;
+}
+
+.info h1 {
+  font-size: 2.3rem;
+
+  line-height: 1.2;
+
+  margin-bottom: 20px;
+
+  color: white;
+}
+
+.description {
+  color: #666;
+
+  line-height: 1.7;
+
+  margin-bottom: 30px;
+}
+
+.info h2 {
+  font-size: 2rem;
+
+  color: #0057b8;
+
+  margin-bottom: 20px;
+}
+
+.stock {
+  margin-bottom: 30px;
+
+  font-size: 1.1rem;
+}
+
+.buttons {
+  display: flex;
+
+  gap: 20px;
+}
+
+.buy,
+.back {
+  flex: 1;
+
+  padding: 16px;
+
+  border-radius: 10px;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.buy {
+  background: #ff6500;
+
+  color: white;
+
+  border: none;
+}
+
+.buy:hover {
+  background: #e95700;
+}
+
+.buy:disabled {
+  background: #aaa;
+
+  cursor: not-allowed;
+}
+
+.back {
+  background: #ddd;
+
+  border: none;
+}
+
+.back:hover {
+  background: #ccc;
+}
+
+.not-found {
+  text-align: center;
+
+  padding: 80px 20px;
+}
+
+.not-found button {
+  margin-top: 20px;
+
+  padding: 12px 30px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #ff6500;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+app-header {
+  display: block;
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .product-page {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+
+    margin: 20px auto;
+  }
+
+  .image {
+    min-height: 300px;
+
+    padding: 20px;
+  }
+
+  .info h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-page {
+    padding: 15px;
+    margin-top: 5px;
+  }
+
+  .buttons {
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .buy,
+  .back {
+    width: 100%;
+  }
+
+  .image img {
+    max-height: 280px;
+  }
+}

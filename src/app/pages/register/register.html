@@ -1,0 +1,155 @@
+<app-header></app-header>
+
+<div class="register-container">
+  <div class="register-card">
+    <h1>Cadastro</h1>
+
+    <p class="subtitle">Preencha seus dados para continuar a compra.</p>
+
+    <form>
+      <div class="form-group">
+        <label for="name"> Nome Completo </label>
+
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="customer.name"
+          name="name"
+          placeholder="Digite seu nome completo"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="cpf"> CPF </label>
+
+        <input
+          id="cpf"
+          type="text"
+          [(ngModel)]="customer.cpf"
+          name="cpf"
+          placeholder="Digite seu CPF"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email"> E-mail </label>
+
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="customer.email"
+          name="email"
+          placeholder="Digite seu e-mail"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password"> Senha </label>
+
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="customer.password"
+          name="password"
+          placeholder="Digite sua senha"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="phone"> Telefone </label>
+
+        <input
+          id="phone"
+          type="text"
+          [(ngModel)]="customer.phone"
+          name="phone"
+          placeholder="Digite seu telefone"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="cep"> CEP </label>
+
+        <input
+          id="cep"
+          type="text"
+          [(ngModel)]="customer.cep"
+          name="cep"
+          placeholder="Digite seu CEP"
+        />
+      </div>
+
+      <div class="row">
+        <div class="form-group grow">
+          <label for="street"> Rua </label>
+
+          <input
+            id="street"
+            type="text"
+            [(ngModel)]="customer.street"
+            name="street"
+            placeholder="Digite sua rua"
+          />
+        </div>
+
+        <div class="form-group small">
+          <label for="number"> Número </label>
+
+          <input
+            id="number"
+            type="text"
+            [(ngModel)]="customer.number"
+            name="number"
+            placeholder="Nº"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="complement"> Complemento </label>
+
+        <input
+          id="complement"
+          type="text"
+          [(ngModel)]="customer.complement"
+          name="complement"
+          placeholder="Apartamento, bloco, etc. (opcional)"
+        />
+      </div>
+
+      <div class="row">
+        <div class="form-group grow">
+          <label for="city"> Cidade </label>
+
+          <input
+            id="city"
+            type="text"
+            [(ngModel)]="customer.city"
+            name="city"
+            placeholder="Digite sua cidade"
+          />
+        </div>
+
+        <div class="form-group small">
+          <label for="state"> Estado </label>
+
+          <input
+            id="state"
+            type="text"
+            [(ngModel)]="customer.state"
+            name="state"
+            placeholder="UF"
+          />
+        </div>
+      </div>
+
+      @if(errorMessage) {
+
+      <p class="error-message">{{ errorMessage }}</p>
+
+      }
+
+      <button type="button" class="continue-btn" (click)="continue()">Continuar</button>
+    </form>
+  </div>
+</div>

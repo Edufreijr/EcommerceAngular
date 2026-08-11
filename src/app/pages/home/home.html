@@ -1,0 +1,14 @@
+<app-banner></app-banner>
+
+<section class="products-container">
+  <h1>Produtos em Destaque</h1>
+
+  <div class="products-grid">
+    @for (product of filteredProducts(); track product.id) {
+
+    <app-product-card [product]="product" (addToCart)="addToCart($event)"> </app-product-card>
+
+    }
+  </div>
+</section>
+<app-header (searchChange)="updateSearch($event)"> </app-header>

@@ -1,0 +1,146 @@
+<div class="admin-container">
+  <div class="admin-header">
+    <div>
+      <span class="admin-label"> PAINEL ADMINISTRATIVO </span>
+
+      <h1>Administração</h1>
+
+      <p>Gerencie os produtos e acompanhe as vendas da EdHardwareShop.</p>
+    </div>
+
+    <button type="button" class="back-button" (click)="backToHome()">Voltar para a loja</button>
+  </div>
+
+  <section class="dashboard-section">
+    <h2>Dashboard</h2>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <span class="dashboard-icon"> 📦 </span>
+
+        <div>
+          <span> Produtos </span>
+
+          <strong> {{ totalProducts() }} </strong>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <span class="dashboard-icon"> 📊 </span>
+
+        <div>
+          <span> Produtos visíveis </span>
+
+          <strong> {{ visibleProductsCount() }} </strong>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <span class="dashboard-icon"> 📦 </span>
+
+        <div>
+          <span> Estoque total </span>
+
+          <strong> {{ totalStock() }} </strong>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <span class="dashboard-icon"> ⚠️ </span>
+
+        <div>
+          <span> Sem estoque </span>
+
+          <strong> {{ unavailableProducts() }} </strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <div class="section-header">
+      <div>
+        <h2>Produtos</h2>
+
+        <p>Gerencie os produtos disponíveis na loja.</p>
+      </div>
+
+      <button type="button" class="add-product-button" (click)="addProduct()">
+        + Adicionar produto
+      </button>
+    </div>
+
+    <div class="products-table">
+      <div class="table-header">
+        <span> Produto </span>
+
+        <span> Categoria </span>
+
+        <span> Preço </span>
+
+        <span> Estoque </span>
+
+        <span> Status </span>
+
+        <span> Ações </span>
+      </div>
+
+      @for (product of products(); track product.id) {
+
+      <div class="product-row">
+        <div class="product-info">
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.name" />
+          </div>
+
+          <div>
+            <strong> {{ product.name }} </strong>
+
+            <small> ID: {{ product.id }} </small>
+          </div>
+        </div>
+
+        <span class="category"> {{ product.category }} </span>
+
+        <strong class="price"> {{ product.price | currency:'BRL':'symbol':'1.2-2' }} </strong>
+
+        <span class="stock" [class.stock-empty]="product.stock <= 0"> {{ product.stock }} </span>
+
+        <span
+          class="status"
+          [class.status-hidden]="product.visible === false"
+          [class.status-empty]="product.stock <= 0"
+        >
+          @if (product.visible === false) { Oculto } @else if (product.stock <= 0) { Sem estoque }
+          @else { Disponível }
+        </span>
+
+        <div class="actions">
+          <button type="button" class="edit-button" (click)="editProduct(product.id)">
+            Editar
+          </button>
+
+          <button type="button" class="visibility-button" (click)="toggleVisibility(product.id)">
+            {{ product.visible === false ? 'Mostrar' : 'Ocultar' }}
+          </button>
+
+          <button type="button" class="remove-button" (click)="removeProduct(product.id)">
+            Remover
+          </button>
+        </div>
+      </div>
+
+      } @empty {
+
+      <div class="empty-products">
+        <div class="empty-icon">📦</div>
+
+        <h3>Nenhum produto carregado</h3>
+
+        <p>Os produtos aparecerão aqui quando forem carregados.</p>
+      </div>
+
+      }
+    </div>
+  </section>
+</div>
