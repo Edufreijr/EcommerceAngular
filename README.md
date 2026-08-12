@@ -1,65 +1,107 @@
 # EdHardwareShop
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.2.
+## O que é o projeto?
+Este projeto trata-se de um e-commerce de produtos de hardware e tecnologia desenvolvido utilizando o Angular.
 
-## Development server
+É Simulado uma loja virtual onde o usuário pode visualizar protudos, pesquisar itens, consultar itens e detalhes,
+adicionar produtos ao carrinho, realizar cadastro e finalizar uma compra.
 
-To start a local development server, run:
+Além disso foi desenvolvido um painel administrativo, onde é possível gerenciar os produtos cadastrados na loja.
 
-```bash
-ng serve
-```
+## Ferramentas utilizadas
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Front-end
 
-## Code scaffolding
+- Angular
+- TypeScript
+- HTML5
+- CSS3
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Competências utilizadas
 
-```bash
-ng generate component component-name
-```
+Durante o desenvolvimento do projeto foram aplicadas diversas competências relacionadas ao desenvolvimento front-end.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Componentização
 
-```bash
-ng generate --help
-```
+O sistema foi dividido em componentes independentes, facilitando a organização e manutenção do código.
 
-## Building
+Entre eles estão:
 
-To build the project run:
+- Header
+- Banner
+- Footer
+- Product Card
+- Login
+- Carrinho
+- Detalhes do Produto
+- Administração
 
-```bash
-ng build
-```
+### TypeScript
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Foi utilizado TypeScript para criação de interfaces, classes, serviços, tipagem dos produtos e gerenciamento das regras da aplicação.
 
-## Running unit tests
+Um exemplo é a interface `Product`, responsável por definir a estrutura dos produtos:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string;
+  stock: number;
+  visible: boolean;
+}.
 
-```bash
-ng test
-```
+## Como usar 
+### O usuário pode:
 
-## Running end-to-end tests
+-Visualizar os produtos disponíveis
+-Pesquisar produtos
+-Filtrar produtos pela pesquisa
+-Visualizar detalhes de um produto
+-Ver preço e estoque
+-Adicionar produtos ao carrinho
+-Carrinho
 
-For end-to-end (e2e) testing, run:
+### O carrinho permite:
 
-```bash
-ng e2e
-```
+-Adicionar produtos
+-Aumentar a quantidade
+-Diminuir a quantidade
+-Remover produtos
+-Visualizar o total da compra
+-Continuar comprando
+-Finalizar a compra
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Login
 
-## Additional Resources
+O sistema possui uma tela de login com opção de acesso como:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+-Cliente
+-Administrador
 
+O acesso como administrador direciona para o painel administrativo.
+
+### Painel Administrativo
+
+O administrador pode:
+
+-Visualizar a quantidade de produtos
+-Visualizar a quantidade de produtos disponíveis
+-Visualizar o estoque total
+-Identificar produtos sem estoque
+-Visualizar os produtos cadastrados
+-Ocultar produtos
+-Tornar produtos visíveis
+-Remover produtos
+-Adicionar novos produtos
 
 ## Como Logar Como admin
 
+Existe um login de admin cadastrado no Sistema.
+
 usuario: admin@email.com
 senha: 1234
+
+
