@@ -429,47 +429,126 @@ nav a:hover {
 
 @media (max-width: 900px) {
   :host {
-    height: 190px;
+    height: 200px;
   }
 
   .top-header {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "logo actions"
+      "search search";
 
-    padding: 15px;
+    padding: 12px 15px;
+    gap: 12px 15px;
 
-    gap: 15px;
-
-    align-items: flex-start;
+    align-items: center;
   }
 
   .logo {
-    align-self: flex-start;
+    grid-area: logo;
+    min-width: 0;
+    gap: 10px;
   }
 
-  .search-wrapper {
-    width: 100%;
+  .logo .icon {
+    font-size: 2rem;
+  }
 
-    max-width: none;
+  .logo h1 {
+    font-size: 1.4rem;
+    white-space: nowrap;
+  }
+
+  .logo small {
+    display: block;
+    font-size: 11px;
   }
 
   .header-actions {
-    position: absolute;
+    grid-area: actions;
 
-    right: 15px;
+    position: static;
 
-    top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .user-area {
+    gap: 6px;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .login-button {
+    padding: 8px 10px;
   }
 
   .login-button span {
     display: none;
   }
 
+  .logout-button {
+    padding: 7px 10px;
+  }
+
+  .cart {
+    font-size: 1.6rem;
+  }
+
+  .cart span {
+    width: 20px;
+    height: 20px;
+
+    top: -7px;
+    right: -8px;
+
+    font-size: 0.7rem;
+  }
+
+  .search-wrapper {
+    grid-area: search;
+
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .search input {
+    min-width: 0;
+    box-sizing: border-box;
+
+    padding: 12px 80px 12px 14px;
+    font-size: 0.95rem;
+  }
+
+  .search-button {
+    width: 60px;
+  }
+
+  .clear-search {
+    right: 65px;
+  }
+
   nav {
+    display: flex;
     flex-wrap: wrap;
 
-    gap: 18px;
+    gap: 12px 20px;
+    padding: 10px 15px;
 
-    padding: 10px;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 0.9rem;
   }
 
   .search-results {
