@@ -4,7 +4,6 @@ export type UserRole = 'cliente' | 'admin';
 
 export interface AuthUser {
   email: string;
-
   role: UserRole;
 }
 
@@ -33,10 +32,13 @@ export class AuthService {
   login(email: string, password: string, role: UserRole): boolean {
     const normalizedEmail = email.toLowerCase().trim();
 
-    if (role === 'admin' && normalizedEmail === 'admin@email.com' && password === '1234') {
+    if (
+      role === 'admin' &&
+      normalizedEmail === 'admin@email.com' &&
+      password === '1234'
+    ) {
       const user: AuthUser = {
         email: normalizedEmail,
-
         role: 'admin',
       };
 
@@ -60,7 +62,6 @@ export class AuthService {
       ) {
         const user: AuthUser = {
           email: customer.email,
-
           role: 'cliente',
         };
 

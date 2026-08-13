@@ -2,6 +2,7 @@
 
 <div class="summary-container">
   <div class="summary-card">
+
     <div class="summary-header">
       <h1>Resumo do Pedido</h1>
 
@@ -9,12 +10,23 @@
     </div>
 
     <section class="customer-section">
-      <h2>Dados do cliente</h2>
+      <h2>Dados do comprador</h2>
 
       <div class="customer-data">
+
+        <p>
+          <strong>Perfil:</strong>
+          {{ authService.isAdmin() ? 'Administrador' : 'Cliente' }}
+        </p>
+
         <p>
           <strong>Nome:</strong>
           {{ customer()?.name }}
+        </p>
+
+        <p>
+          <strong>CPF:</strong>
+          {{ customer()?.cpf }}
         </p>
 
         <p>
@@ -29,8 +41,11 @@
 
         <p>
           <strong>Endereço:</strong>
-          {{ customer()?.street }}, {{ customer()?.number }} @if (customer()?.complement) { - {{
-          customer()?.complement }} }
+          {{ customer()?.street }}, {{ customer()?.number }}
+
+          @if (customer()?.complement) {
+            - {{ customer()?.complement }}
+          }
         </p>
 
         <p>
@@ -42,6 +57,7 @@
           <strong>Cidade:</strong>
           {{ customer()?.city }} - {{ customer()?.state }}
         </p>
+
       </div>
     </section>
 
@@ -49,25 +65,27 @@
       <h2>Forma de pagamento</h2>
 
       <div class="payment-data">
+
         @if (paymentMethod() === 'pix') {
 
-        <strong> PIX </strong>
+          <strong>PIX</strong>
 
-        <span> 15% de desconto </span>
+          <span>15% de desconto</span>
 
         } @else if (paymentMethod() === 'card') {
 
-        <strong> Cartão </strong>
+          <strong>Cartão</strong>
 
-        <span> Crédito ou débito </span>
+          <span>Crédito ou débito</span>
 
         } @else {
 
-        <strong> Boleto bancário </strong>
+          <strong>Boleto bancário</strong>
 
-        <span> Pagamento à vista </span>
+          <span>Pagamento à vista</span>
 
         }
+
       </div>
     </section>
 
@@ -75,71 +93,113 @@
       <h2>Produtos</h2>
 
       <div class="products-list">
+
         @for (item of products(); track item.product.id) {
 
-        <div class="product-item">
-          <div class="product-image">
-            <img [src]="item.product.image" [alt]="item.product.name" />
+          <div class="product-item">
+
+            <div class="product-image">
+              <img
+                [src]="item.product.image"
+                [alt]="item.product.name"
+              />
+            </div>
+
+            <div class="product-info">
+
+              <h3>
+                {{ item.product.name }}
+              </h3>
+
+              <span>
+                {{ item.quantity }}x
+                {{ item.product.price | currency:'BRL':'symbol':'1.2-2' }}
+              </span>
+
+              <small>
+                Total do item:
+                {{ (item.product.price * item.quantity) |
+                currency:'BRL':'symbol':'1.2-2' }}
+              </small>
+
+            </div>
+
           </div>
-
-          <div class="product-info">
-            <h3>{{ item.product.name }}</h3>
-
-            <span>
-              {{ item.quantity }}x {{ item.product.price | currency:'BRL':'symbol':'1.2-2' }}
-            </span>
-
-            <small>
-              Total do item: {{ (item.product.price * item.quantity) |
-              currency:'BRL':'symbol':'1.2-2' }}
-            </small>
-          </div>
-        </div>
 
         } @empty {
 
-        <div class="empty-products">
-          <p>Nenhum produto no carrinho.</p>
-        </div>
+          <div class="empty-products">
+            <p>Nenhum produto no carrinho.</p>
+          </div>
 
         }
+
       </div>
     </section>
 
     <section class="values-section">
-      <div class="value-row">
-        <span> Subtotal </span>
 
-        <strong> {{ subtotal() | currency:'BRL':'symbol':'1.2-2' }} </strong>
+      <div class="value-row">
+        <span>Subtotal</span>
+
+        <strong>
+          {{ subtotal() | currency:'BRL':'symbol':'1.2-2' }}
+        </strong>
       </div>
 
       @if (discount() > 0) {
 
-      <div class="value-row discount">
-        <span> Desconto PIX (15%) </span>
+        <div class="value-row discount">
 
-        <strong> - {{ discount() | currency:'BRL':'symbol':'1.2-2' }} </strong>
-      </div>
+          <span>Desconto PIX (15%)</span>
+
+          <strong>
+            - {{ discount() | currency:'BRL':'symbol':'1.2-2' }}
+          </strong>
+
+        </div>
 
       }
 
       <div class="value-row total">
-        <span> Total </span>
 
-        <strong> {{ total() | currency:'BRL':'symbol':'1.2-2' }} </strong>
+        <span>Total</span>
+
+        <strong>
+          {{ total() | currency:'BRL':'symbol':'1.2-2' }}
+        </strong>
+
       </div>
+
     </section>
 
     @if (errorMessage) {
 
-    <div class="error-message">{{ errorMessage }}</div>
+      <div class="error-message">
+        {{ errorMessage }}
+      </div>
 
     }
 
     <div class="actions">
-      <button type="button" class="back-button" (click)="backToPayment()">Voltar</button>
 
-      <button type="button" class="finish-button" (click)="finishOrder()">Finalizar Pedido</button>
+      <button
+        type="button"
+        class="back-button"
+        (click)="backToPayment()"
+      >
+        Voltar
+      </button>
+
+      <button
+        type="button"
+        class="finish-button"
+        (click)="finishOrder()"
+      >
+        Finalizar Pedido
+      </button>
+
     </div>
+
   </div>
 </div>

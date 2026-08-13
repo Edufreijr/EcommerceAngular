@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth.service';
 
 import { Header } from '../../components/header/header';
 
+import { Customer } from '../../interfaces/customer';
+
 @Component({
   selector: 'app-payment',
   standalone: true,
@@ -24,11 +26,38 @@ export class Payment {
 
   private readonly paymentService = inject(PaymentService);
 
-  private readonly authService = inject(AuthService);
+  readonly authService = inject(AuthService);
 
   readonly cartService = inject(CartService);
 
-  readonly customer = this.customerService.customer;
+  readonly user = this.authService.user;
+
+  readonly customer = computed<Customer | null>(() => {
+    const savedCustomer = this.customerService.customer();
+
+    if (savedCustomer) {
+      return savedCustomer;
+    }
+
+    if (this.authService.isAdmin()) {
+      return {
+        id: 0,
+        name: 'Administrador da EdHardwareShop',
+        cpf: '000.000.000-00',
+        email: 'admin@email.com',
+        password: '1234',
+        phone: '(11) 99999-9999',
+        cep: '01000-000',
+        street: 'Rua EdHardware',
+        number: '100',
+        complement: 'Sala Administrativa',
+        city: 'São Paulo',
+        state: 'SP',
+      };
+    }
+
+    return null;
+  });
 
   readonly paymentMethod = signal(this.paymentService.paymentMethod());
 
@@ -67,6 +96,12 @@ export class Payment {
   }
 
   backToRegister(): void {
+    if (this.authService.isAdmin()) {
+      this.router.navigate(['/admin']);
+
+      return;
+    }
+
     this.router.navigate(['/cadastro']);
   }
 }

@@ -8,13 +8,31 @@
   </div>
 
   <div class="customer-info">
-    <div>
-      <span> Cliente </span>
+    @if (authService.isAdmin()) {
 
-      <strong> {{ customer()?.name || 'Cliente' }} </strong>
+    <div>
+      <span>Administrador</span>
+
+      <strong>{{ user()?.email }}</strong>
     </div>
 
-    <button type="button" class="edit-button" (click)="backToRegister()">Alterar dados</button>
+    <button type="button" class="edit-button" (click)="backToRegister()">
+      Voltar
+    </button>
+
+    } @else {
+
+    <div>
+      <span>Cliente</span>
+
+      <strong>{{ customer()?.name || 'Cliente' }}</strong>
+    </div>
+
+    <button type="button" class="edit-button" (click)="backToRegister()">
+      Alterar dados
+    </button>
+
+    }
   </div>
 
   <div class="payment-content">
@@ -30,12 +48,14 @@
         <div class="option-icon">PIX</div>
 
         <div class="option-info">
-          <strong> PIX </strong>
+          <strong>PIX</strong>
 
-          <span> 15% de desconto </span>
+          <span>15% de desconto</span>
         </div>
 
-        <div class="radio">{{ paymentMethod() === 'pix' ? '●' : '○' }}</div>
+        <div class="radio">
+          {{ paymentMethod() === 'pix' ? '●' : '○' }}
+        </div>
       </button>
 
       <button
@@ -47,12 +67,14 @@
         <div class="option-icon">💳</div>
 
         <div class="option-info">
-          <strong> Cartão </strong>
+          <strong>Cartão</strong>
 
-          <span> Crédito ou débito </span>
+          <span>Crédito ou débito</span>
         </div>
 
-        <div class="radio">{{ paymentMethod() === 'card' ? '●' : '○' }}</div>
+        <div class="radio">
+          {{ paymentMethod() === 'card' ? '●' : '○' }}
+        </div>
       </button>
 
       <button
@@ -64,12 +86,14 @@
         <div class="option-icon">BOL</div>
 
         <div class="option-info">
-          <strong> Boleto </strong>
+          <strong>Boleto</strong>
 
-          <span> Pagamento à vista </span>
+          <span>Pagamento à vista</span>
         </div>
 
-        <div class="radio">{{ paymentMethod() === 'boleto' ? '●' : '○' }}</div>
+        <div class="radio">
+          {{ paymentMethod() === 'boleto' ? '●' : '○' }}
+        </div>
       </button>
     </div>
 
@@ -80,10 +104,14 @@
 
       <p>Você receberá o código PIX após confirmar o pedido.</p>
 
-      <strong> Você economiza {{ discount() | currency:'BRL' }} </strong>
+      <strong>
+        Você economiza {{ discount() | currency:'BRL' }}
+      </strong>
     </div>
 
-    } @if (paymentMethod() === 'card') {
+    }
+
+    @if (paymentMethod() === 'card') {
 
     <div class="method-info">
       <h3>Pagamento com cartão</h3>
@@ -91,7 +119,9 @@
       <p>O pagamento com cartão será processado com segurança.</p>
     </div>
 
-    } @if (paymentMethod() === 'boleto') {
+    }
+
+    @if (paymentMethod() === 'boleto') {
 
     <div class="method-info">
       <h3>Pagamento via boleto bancário</h3>
@@ -104,31 +134,49 @@
 
   <div class="order-total">
     <div class="total-row">
-      <span> Subtotal </span>
+      <span>Subtotal</span>
 
-      <strong> {{ subtotal() | currency:'BRL' }} </strong>
+      <strong>
+        {{ subtotal() | currency:'BRL' }}
+      </strong>
     </div>
 
     @if (paymentMethod() === 'pix') {
 
     <div class="discount-row">
-      <span> Desconto PIX (15%) </span>
+      <span>Desconto PIX (15%)</span>
 
-      <strong> - {{ discount() | currency:'BRL' }} </strong>
+      <strong>
+        - {{ discount() | currency:'BRL' }}
+      </strong>
     </div>
 
     }
 
     <div class="final-row">
-      <span> Total </span>
+      <span>Total</span>
 
-      <strong> {{ finalTotal() | currency:'BRL' }} </strong>
+      <strong>
+        {{ finalTotal() | currency:'BRL' }}
+      </strong>
     </div>
   </div>
 
   <div class="actions">
-    <button type="button" class="back-button" (click)="backToRegister()">Voltar</button>
+    <button
+      type="button"
+      class="back-button"
+      (click)="backToRegister()"
+    >
+      Voltar
+    </button>
 
-    <button type="button" class="continue-button" (click)="continueToSummary()">Continuar</button>
+    <button
+      type="button"
+      class="continue-button"
+      (click)="continueToSummary()"
+    >
+      Continuar
+    </button>
   </div>
 </div>

@@ -25,7 +25,9 @@ export class CustomerService {
       return null;
     }
 
-    return customer.email.toLowerCase().trim() === email.toLowerCase().trim() ? customer : null;
+    return customer.email.toLowerCase().trim() === email.toLowerCase().trim()
+      ? customer
+      : null;
   }
 
   validateLogin(email: string, password: string): Customer | null {
@@ -43,12 +45,10 @@ export class CustomerService {
   }
 
   hasCustomer(): boolean {
-    // Cliente já possui cadastro completo
     if (this.customer()) {
       return true;
     }
 
-    // Verifica se existe usuário autenticado
     const loggedUser = localStorage.getItem('edhardware-user');
 
     if (!loggedUser) {
@@ -58,11 +58,31 @@ export class CustomerService {
     try {
       const user = JSON.parse(loggedUser);
 
-      // Se for cliente logado, considera autenticado
-      return user.role === 'cliente';
+      return user.role === 'cliente' || user.role === 'admin';
     } catch {
       return false;
     }
+  }
+
+  createAdminCustomer(): Customer {
+    const adminCustomer: Customer = {
+      id: 999,
+      name: 'Administrador EdHardwareShop',
+      cpf: '000.000.000-00',
+      email: 'admin@email.com',
+      password: '1234',
+      phone: '(11) 99999-9999',
+      cep: '01000-000',
+      street: 'Avenida EdHardware',
+      number: '1000',
+      complement: 'Sala Administrativa',
+      city: 'São Paulo',
+      state: 'SP',
+    };
+
+    this.saveCustomer(adminCustomer);
+
+    return adminCustomer;
   }
 
   clearCustomer(): void {

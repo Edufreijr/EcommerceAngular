@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth.service';
 
 import { Header } from '../../components/header/header';
 
+import { Customer } from '../../interfaces/customer';
+
 @Component({
   selector: 'app-order-summary',
   standalone: true,
@@ -30,7 +32,28 @@ export class OrderSummary {
 
   private readonly router = inject(Router);
 
-  readonly customer = this.customerService.customer;
+  readonly user = this.authService.user;
+
+  readonly customer = computed<Customer | null>(() => {
+    if (this.authService.isAdmin()) {
+      return {
+        id: 0,
+        name: 'Administrador da EdHardwareShop',
+        cpf: '000.000.000-00',
+        email: 'admin@email.com',
+        password: '1234',
+        phone: '(11) 99999-9999',
+        cep: '01000-000',
+        street: 'Rua EdHardware',
+        number: '100',
+        complement: 'Sala do Admin',
+        city: 'São Paulo',
+        state: 'SP',
+      };
+    }
+
+    return this.customerService.customer();
+  });
 
   readonly products = computed(() => {
     return this.cartService.cartItems();
@@ -88,7 +111,6 @@ export class OrderSummary {
 
       productsToUpdate.push({
         product,
-
         quantity: item.quantity,
       });
     }
@@ -96,7 +118,6 @@ export class OrderSummary {
     for (const item of productsToUpdate) {
       this.productService.updateStock(
         item.product.id,
-
         item.product.stock - item.quantity
       );
     }
